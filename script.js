@@ -258,7 +258,7 @@ function fillDG(){
 function randDrink(){
     select[6] = true;
     $("#drink").append($("<div>").addClass("rand-div").attr("id", "dR-div"));
-    $("#dR-div").append($("<button>").attr("id", "dR-btn").addClass("rand-btn").text("Random Drink"));
+    $("#dR-div").append($("<button>").attr("id", "dR-btn").addClass("btn rand-btn").text("Random Drink"));
     queryURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
     pullAPI(queryURL);
     
@@ -300,7 +300,7 @@ function fillMA(){
 function randMeal(){
     select[14] = true;
     $("#meal").append($("<div>").addClass("rand-div").attr("id", "mR-div"));
-    $("#mR-div").append($("<button>").attr("id", "mR-btn").addClass("rand-btn").text("Random Meal"));
+    $("#mR-div").append($("<button>").attr("id", "mR-btn").addClass("rand-btn btn").text("Random Meal"));
     queryURL = "https://www.themealdb.com/api/json/v1/1/random.php";
     pullAPI(queryURL);   
 }
@@ -328,7 +328,7 @@ function displayDrink(drinkObj){
     //console.log(drinkObj[strIngredient])
     //Add ingredients
     while(drinkObj[strIngredient] !== null || drinkObj[strMeasure] !==null){ 
-        var ingEl = $("<p>").text(drinkObj[strMeasure] + " " + drinkObj[strIngredient]);
+        var ingEl = $("<p>").text(drinkObj[strMeasure] + " " + drinkObj[strIngredient]).addClass("ingredients p-info");
         console.log(x)
         $("#drink").append(ingEl);
         x++;
@@ -336,7 +336,7 @@ function displayDrink(drinkObj){
         strIngredient = "strIngredient" + x;
     
     }
-    var descEl = $("<p>").text("Instructions: " + drinkObj.strInstructions);
+    var descEl = $("<p>").text("Instructions: " + drinkObj.strInstructions).addClass("instructions p-info");
     $("#drink").append(descEl);
     $("#drink").append($("<button>").attr("id", "drink-restart").addClass("btn restart-btn").text("Pick another"));
 
