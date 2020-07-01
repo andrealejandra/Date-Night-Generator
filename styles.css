@@ -1,0 +1,25 @@
+.main-img{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+};
+
+#nav-link{
+display: flex;
+justify-content:center;
+align-items:center;
+}
+
+.column{
+    float: left;
+    width: 33%;
+    text-align: center;
+    font-size: large;
+    font-weight: bolder;
+
+}
+.row::after{
+    content: "";
+    display: flex;
+    clear: both;
+}
