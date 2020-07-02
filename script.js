@@ -1,12 +1,15 @@
 const numDrinkBtns = 3;
 isDrink = true;
-var queryURL, btnVal, userInput, drinkID, mealID;
+var queryURL, btnVal, userInput, drinkID, mealID, drinkObj, mealObj;
 var select = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 var notInitialized = true; 
 var haveDrink = false;
 var haveMeal = false;
 var isRestart = false;
 var linkURL;
+var storageDrink = [];
+var storageMeal = [];
+
 
 
 function pullAPI(queryURL){
@@ -22,7 +25,7 @@ $.ajax({
 
     }).then(function(response){
     //console.log(response);
-    console.log(select)
+    //console.log(select)
     console.log(isRestart);
         var array, index;
         //By ingredient
@@ -207,17 +210,19 @@ $.ajax({
             getMeal(); 
         }
         else if(haveDrink === true){
-            displayDrink(response.drinks[0]);
             haveDrink = false;
+            drinkObj = response.drinks[0];
+            console.log("root" + drinkObj.strDrink)
+            displayDrink();
+            
         }
         else if(haveMeal === true){
-            displayMeal(response.meals[0]);
             haveMeal = false;
+            mealObj = response.meals[0];
+            displayMeal();
+            
         }
-       
-        
-
-
+    
     })
 }
 
@@ -316,7 +321,7 @@ function getMeal(){
     pullAPI(queryURL);
 }
 
-function displayDrink(drinkObj){
+function displayDrink(){
     //console.log(drinkObj)
     var dImgEl = $("<img>").attr("src", drinkObj.strDrinkThumb).addClass("item-img");
     $("#drink").append(dImgEl);
@@ -339,9 +344,11 @@ function displayDrink(drinkObj){
     var descEl = $("<p>").text("Instructions: " + drinkObj.strInstructions).addClass("instructions p-info");
     $("#drink").append(descEl);
     $("#drink").append($("<button>").attr("id", "drink-restart").addClass("btn restart-btn").text("Pick another"));
+    $("#drink").append($("<button>").attr("id", "drink-fav").addClass("btn fav-btn").text("Favorite"));
+    console.log(drinkObj);
 
 }
-function displayMeal(mealObj){
+function displayMeal(){
     var mImgEl = $("<img>").attr("src", mealObj.strMealThumb).addClass("item-img");
     $("#meal").append(mImgEl);
     var mNameEl = $("<h2>").text(mealObj.strMeal).addClass("item-hdr");
@@ -351,8 +358,10 @@ function displayMeal(mealObj){
     //console.log(mealObj.strSource);
     $("#meal").append(mdescEl);
     $("#meal").append($("<button>").attr("id", "meal-restart").addClass("btn restart-btn").text("Pick another"));
-
+    $("#meal").append($("<button>").attr("id", "meal-fav").addClass("btn fav-btn").text("Favorite"));
 }
+
+
 
 
 fillDI();
@@ -462,6 +471,27 @@ $(".container").on("click", (function(event){
         
 
     }
+    if(event.target.matches("#drink-fav"))
+    {
+        console.log(drinkObj)
+        
+        if(JSON.parse(localStorage.getItem("fav-drinks")) !== null){
+            storageDrink = JSON.parse(localStorage.getItem("fav-drinks"));
+        }
+        storageDrink.push(drinkObj);
+        localStorage.setItem("fav-drinks", JSON.stringify(storageDrink))
+    }
+    if(event.target.matches("#meal-fav"))
+    {
+        if(JSON.parse(localStorage.getItem("fav-meals")) !== null){
+            storageMeal = JSON.parse(localStorage.getItem("fav-meals"));
+        }
+        console.log(mealObj)
+        storageMeal.push(mealObj);
+        localStorage.setItem("fav-meals", JSON.stringify(storageMeal))
+    }
+
+    
 }))
 $(".container").on("click", (function(event){
     event.preventDefault();
@@ -472,3 +502,6 @@ $(".container").on("click", (function(event){
 
     }
 }))
+
+
+
