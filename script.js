@@ -31,6 +31,7 @@ $.ajax({
         //By ingredient
         if (select[0] === true){
             array = response.drinks;
+            $("#dI-sel").append($("<option>").addClass("dI-op").text("DRINK UP!!").val("selected disabled"));
             for(var i = 0; i < array.length; i++) {
                 $("#dI-sel").append($("<option>").addClass("dI-op").text(array[i].strIngredient1)); 
             }
@@ -54,6 +55,7 @@ $.ajax({
         //By category
        else if (select[2] === true){
             array = response.drinks;
+            $("#dC-sel").append($("<option>").addClass("dC-op").text("DRINK UP!!").val("selected disabled"));
             for(var i = 0; i < array.length; i++) {
                 $("#dC-sel").append($("<option>").addClass("dC-op").text(array[i].strCategory)) 
                //console.log(array[i].strCategory);
@@ -77,6 +79,7 @@ $.ajax({
         //By Glass
         else if (select[4] === true){
             array = response.drinks;
+            $("#dG-sel").append($("<option>").addClass("dG-op").text("DRINK UP!!").val("selected disabled"));
             //Last index of API array is empty so subtract 1 from length
             for(var i = 0; i < (array.length - 1); i++) {
                 $("#dG-sel").append($("<option>").addClass("dG-op").text(array[i].strGlass)) 
@@ -126,6 +129,7 @@ $.ajax({
         //MEALS BELOW
         else if (select[8] === true){
             array = response.meals;
+            $("#mI-sel").append($("<option>").addClass("mI-op").text("BON APPETIT!").val("selected disabled"));
             for(var i = 0; i < array.length; i++) {
                 $("#mI-sel").append($("<option>").addClass("mI-op").text(array[i].strIngredient)); 
             }
@@ -149,6 +153,7 @@ $.ajax({
         //By category
        else if (select[10] === true){
             array = response.meals;
+            $("#mC-sel").append($("<option>").addClass("mC-op").text("BON APPETIT!").val("selected disabled"));
             for(var i = 0; i < array.length; i++) {
                 $("#mC-sel").append($("<option>").addClass("mC-op").text(array[i].strCategory)) 
                //console.log(array[i].strCategory);
@@ -173,6 +178,7 @@ $.ajax({
         else if (select[12] === true){
             array = response.meals;
             //Last index of API array is empty so subtract 1 from length
+            $("#mA-sel").append($("<option>").addClass("mA-op").text("BON APPETIT!").val("selected disabled"));
             for(var i = 0; i < (array.length - 1); i++) {
                 $("#mA-sel").append($("<option>").addClass("mA-op").text(array[i].strArea)) 
                //console.log(array[i].strArea);
@@ -332,7 +338,7 @@ function displayDrink(){
     var strMeasure = "strMeasure" + x;
     //console.log(drinkObj[strIngredient])
     //Add ingredients
-    while(drinkObj[strIngredient] !== null || drinkObj[strMeasure] !==null){ 
+    while(drinkObj[strIngredient] !== null || drinkObj[strMeasure] !== null){ 
         var ingEl = $("<p>").text(drinkObj[strMeasure] + " " + drinkObj[strIngredient]).addClass("ingredients p-info");
         console.log(x)
         $("#drink").append(ingEl);
