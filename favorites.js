@@ -72,10 +72,12 @@ function displayDrink(){
     var descEl = $("<p>").text("Instructions: " + drinkObj.strInstructions).addClass("instructions p-info");
     $("#fav-drink").append(descEl);
     $("#fav-drink").append($("<button>").attr("id", "fD-back").addClass("btn fav-btn").text("Back"));
+    $("#fav-drink").append($("<button>").attr("id", "fD-remove").addClass("btn fav-btn").text("Remove"));
     
 
 }
 function displayMeal(){
+    $("#fav-meal").empty();
     var mImgEl = $("<img>").attr("src", mealObj.strMealThumb).addClass("item-img");
     $("#fav-meal").append(mImgEl);
     var mNameEl = $("<h2>").text(mealObj.strMeal).addClass("item-hdr");
@@ -85,6 +87,7 @@ function displayMeal(){
     //console.log(mealObj.strSource);
     $("#fav-meal").append(mdescEl);
     $("#fav-meal").append($("<button>").attr("id", "fM-back").addClass("btn fav-btn").text("Back"));
+    $("#fav-meal").append($("<button>").attr("id", "fM-remove").addClass("btn fav-btn").text("Remove"));
     
 }
 
@@ -139,6 +142,43 @@ $(".container").on("click", (function(event){
     if(event.target.matches("#fM-back"))
     {
         $("#fav-meal").empty();
+        dBack = false;
+        loadFavorites();
+    }
+}))
+
+$(".container").on("click", (function(event){
+    event.preventDefault();
+    if(event.target.matches("#fD-remove"))
+    {
+        $("#fav-drink").empty();
+        for(var i = 0; i < storageDrink.length; i++){
+            
+            if(storageDrink[i].strDrink === drinkObj.strDrink)
+            {
+                storageDrink.splice(i, 1);
+            }
+        }
+            localStorage.removeItem("fav-drinks");
+            localStorage.setItem("fav-drinks", JSON.stringify(storageDrink));
+        mBack = false;
+        loadFavorites();
+    }
+}))
+$(".container").on("click", (function(event){
+    event.preventDefault();
+    if(event.target.matches("#fM-remove"))
+    {
+        $("#fav-meal").empty();
+        for(var i = 0; i < storageMeal.length; i++){
+            
+            if(storageMeal[i].strMeal === mealObj.strMeal)
+            {
+                storageMeal.splice(i, 1);
+            }
+        }
+            localStorage.removeItem("fav-mealss");
+            localStorage.setItem("fav-meals", JSON.stringify(storageMeal));
         dBack = false;
         loadFavorites();
     }

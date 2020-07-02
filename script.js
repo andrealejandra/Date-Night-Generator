@@ -471,15 +471,21 @@ $(".container").on("click", (function(event){
         
 
     }
+    //Adds drink to favorites
     if(event.target.matches("#drink-fav"))
     {
-        console.log(drinkObj)
+        
         
         if(JSON.parse(localStorage.getItem("fav-drinks")) !== null){
             storageDrink = JSON.parse(localStorage.getItem("fav-drinks"));
         }
         storageDrink.push(drinkObj);
         localStorage.setItem("fav-drinks", JSON.stringify(storageDrink))
+        $(event.target).remove();
+        $("#drink").append($("<p>").text("Added to favorites!"));
+        
+        
+        
     }
     if(event.target.matches("#meal-fav"))
     {
@@ -489,6 +495,8 @@ $(".container").on("click", (function(event){
         console.log(mealObj)
         storageMeal.push(mealObj);
         localStorage.setItem("fav-meals", JSON.stringify(storageMeal))
+        $(event.target).remove(); 
+        $("#meal").append($("<p>").text("Added to favorites!"));
     }
 
     
