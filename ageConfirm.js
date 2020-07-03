@@ -32,6 +32,7 @@ $(document).ready(function(){
             age['month'] = $("#selectMonth").val();
             age['year']=$("#selectYear").val();
             age['day']= $("#selectDay").val();
+            console.log(age);
             compareDate();
         })
 
@@ -91,19 +92,21 @@ $(document).ready(function(){
 
     function setCookies(cname,cvalue,exdays){
         var d= new Date();
-        d.setTime(date.getTime()+(exdays*24*60*60*1000));
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));
         var expiration= "expires="+ d.toUTCString();
         document.cookie=cname + "=" + cvalue + ";" + expiration + ";path=/";
     }
 
     function ageGood(){
-        var limit= moment().subtract(21, 'years').calendar;
+        var limit= moment().subtract(21, 'years').calendar();
         var birth= age.month + " "+ age.day + " " + age.year;
         var ageGood= moment(birth, "MM DD YYYY").isBefore(limit, 'day');
+        console.log(birth);
+        console.log(limit);
 
         if (ageGood){
             setCookies('popupCookie', 'submited', 1);
-            $('#overallModal').modal('hide');
+            $('#overallModal').hide();
         } else{
             console.log("false");
         }
