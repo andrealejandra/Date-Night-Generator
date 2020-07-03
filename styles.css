@@ -10,6 +10,51 @@ justify-content:center;
 align-items:center;
 }
 
+p{
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+}
+.ageHeader{
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.ageTitle{
+    text-align: center;
+    font-size: medium;
+    font-weight: normal;
+}
+
+.ageSub{
+    text-align: center;
+    font-size: smaller;
+    font-weight: lighter;
+}
+
+#dateInputFields{
+    display: none;
+    text-align: center;
+
+}
+.enterAge{
+    text-align: center;
+    font-size: smaller;
+    font-weight: normal;
+
+}
+
+#confirmationBtn{
+    color: rgb(16, 89, 224);
+    font-weight: bold;
+    background-color: cornsilk;
+    border: 1px solid black;
+    border-radius: 0px;
+    
+}
+
+
 .column{
     float: left;
     width: 33%;
