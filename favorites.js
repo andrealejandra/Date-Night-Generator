@@ -79,7 +79,7 @@ function displayMeal(){
     var mNameEl = $("<h2>").text(mealObj.strMeal).addClass("item-hdr");
     $("#fav-meal").append(mNameEl);
     linkURL = mealObj.strSource;
-    var mdescEl = $("<a>").text("Click here for scrumptious recipe!").attr({id: "meal-link", href: linkURL, style: "display:block"});
+    var mdescEl = $("<a>").text("Click here for scrumptious recipe!").attr({id: "fav-meal-link", href: linkURL, style: "display:block"});
     //console.log(mealObj.strSource);
     $("#fav-meal").append(mdescEl);
     $("#fav-meal").append($("<button>").attr("id", "fM-back").addClass("btn fav-btn").text("Back"));
@@ -155,8 +155,8 @@ $(".container").on("click", (function(event){
         }
             localStorage.removeItem("fav-drinks");
             localStorage.setItem("fav-drinks", JSON.stringify(storageDrink));
-        mBack = false;
-        loadFavorites();
+        
+        loadFavoriteDrinks();
     }
 }))
 $(".container").on("click", (function(event){
@@ -173,7 +173,16 @@ $(".container").on("click", (function(event){
         }
             localStorage.removeItem("fav-mealss");
             localStorage.setItem("fav-meals", JSON.stringify(storageMeal));
-        dBack = false;
-        loadFavorites();
+    
+        loadFavoriteMeals();
+    }
+}))
+
+$(".container").on("click", (function(event){
+    event.preventDefault();
+    if(event.target.matches("#fav-meal-link"))
+    {
+        window.open(linkURL, '_blank');
+
     }
 }))
