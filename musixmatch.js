@@ -13,6 +13,9 @@ searchDiv.append($("<div>").attr("id","randomDiv"));
 var randomDiv = $("#randomDiv");
 randomDiv.append($("<button>").attr("id","random").text("Random Playlist"));
 randomDiv.append($("<hr>"));
+//make container for results
+searchDiv.append($("<div>").attr("id","resultsDiv"));
+var resultsDiv =$("#resultsDiv");
 
 //turn search input into searchSong
 $("#searchbtn").on("click",function(event){
@@ -20,7 +23,7 @@ $("#searchbtn").on("click",function(event){
     var searchSong = $("#searchbox").val().trim();
     $("#searchbox").val(" ");
     search();
-    randomDiv.append($("<p>").attr("id","results").text("Is this what you were looking for?"));
+  
 
 //this function should only be triggered when the search button is pressed
 function search(){
@@ -40,7 +43,11 @@ $.ajax({
     jsonpCallback: 'jsonp_callback',
     contentType: 'application/json',
     success: function(data) {
-        console.log(data); 
+        console.log(data);
+        console.log(data.message.body.track_list[0].track.track_name);
+        // var song = `data.message.body.track_list[0].track.track_name`;
+        // var artist = `data.message.body.track_list[0].track.artist_name`;
+        $("#resultsDiv").html(`<h5>Search Result</h5><br> Song:${data.message.body.track_list[0].track.track_name} <br>Artist:${data.message.body.track_list[0].track.artist_name}`);
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(jqXHR);
@@ -63,9 +70,9 @@ var randomLyric = randomLyricArray[Math.floor(Math.random() * randomLyricArray.l
 
 $("#random").on("click", (function(event){
     event.preventDefault();
-    randomDiv.append($("<p>").attr("id","results").text("Spontaneity! I like it."));
-    random ();
+    random();
 }));
+
 //ajax call with the parameters of amount of tracks (5) with each song containing a random lyric from the randomLyric array
 function random(){
 
@@ -83,13 +90,28 @@ function random(){
       jsonpCallback: 'jsonp_callback',
       contentType: 'application/json',
       success: function(data) {
-          console.log(data); 
+          //console.log(data); 
+          console.log(data.message.body.track_list);
+          var trackList = data.message.body.track_list;
+
+          var songName = [];
+          var artistName = [];
+
+          for (var i = 0; i < trackList.length; i++){
+              console.log(i);
+           
+            songName [i]= data.message.body.track_list[i].track.track_name
+            artistName [i]= data.message.body.track_list[i].track.artist_name
+    $("#resultsDiv").append($("<p>").text("Song:" + songName));
+    $("#resultsDiv").append($("<p>").text("Artist:" + artistName))
+};
+//calls for loop function to make list of songs
       },
       error: function(jqXHR, textStatus, errorThrown) {
           console.log(jqXHR);
           console.log(textStatus);
           console.log(errorThrown);
-      }    
-    });
-   };
-
+      }
+        
+      })
+    }
