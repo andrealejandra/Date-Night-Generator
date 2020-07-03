@@ -27,27 +27,23 @@ function favMealsList(){
 }
 
 
-function loadFavorites(){    
-                    
-    if(dBack === true){   
+function loadFavoriteDrinks(){    
         if(JSON.parse(localStorage.getItem("fav-drinks")) !== null){
             storageDrink = JSON.parse(localStorage.getItem("fav-drinks"));
             favDrinksList();
         }
         else{
             $("#fav-drink").append($("<p>").addClass("p").text("You do not have any favorite drinks yet!"));             
-        }
+        }     
+}
+function loadFavoriteMeals(){ 
+    if(JSON.parse(localStorage.getItem("fav-meals")) !== null){
+        storageMeal = JSON.parse(localStorage.getItem("fav-meals"));
+        favMealsList();
     }
-    if(mBack === true){
-        if(JSON.parse(localStorage.getItem("fav-meals")) !== null){
-            storageMeal = JSON.parse(localStorage.getItem("fav-meals"));
-            favMealsList();
-        }
-        else{
-            $("#fav-meal").append($("<p>").addClass("p").text("You do not have any favorite meals yet!"));             
-        }
+    else{
+        $("#fav-meal").append($("<p>").addClass("p").text("You do not have any favorite meals yet!"));             
     }
-       
 } 
 function displayDrink(){
     $("#fav-drink").empty();
@@ -93,8 +89,8 @@ function displayMeal(){
 
 
 
-loadFavorites();
-
+loadFavoriteDrinks();
+loadFavoriteMeals();
 
 $(".container").change((function(event){
     event.preventDefault();
@@ -133,8 +129,7 @@ $(".container").on("click", (function(event){
     if(event.target.matches("#fD-back"))
     {
         $("#fav-drink").empty();
-        mBack = false;
-        loadFavorites();
+        loadFavoriteDrinks();
     }
 }))
 $(".container").on("click", (function(event){
@@ -142,8 +137,7 @@ $(".container").on("click", (function(event){
     if(event.target.matches("#fM-back"))
     {
         $("#fav-meal").empty();
-        dBack = false;
-        loadFavorites();
+        loadFavoriteMeals();
     }
 }))
 
