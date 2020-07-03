@@ -68,3 +68,13 @@ p{
     display: flex;
     clear: both;
 }
+
+.item-img{
+    width: 80%;
+    height: auto;
+}
+/*Just added this so you can see the buttons, feel free to change*/ 
+.btn{
+    background-color: rgb(9, 9, 95);
+    color: whitesmoke;
+}

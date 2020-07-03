@@ -6,12 +6,12 @@ musicResult.append("<div>").attr("id","searchDiv");
 var searchDiv =$("#searchDiv");
 searchDiv.text("Song Search: ");
 searchDiv.append($("<input>").attr("id","searchbox"));
-$("#searchDiv").append($("<button>").attr("id","searchbtn").text("Search by Song Name"));
+$("#searchDiv").append($("<button>").addClass("btn").attr("id","searchbtn").text("Search by Song Name"));
 
 //div for random playlist search button
 searchDiv.append($("<div>").attr("id","randomDiv"));
 var randomDiv = $("#randomDiv");
-randomDiv.append($("<button>").attr("id","random").text("Random Playlist"));
+randomDiv.append($("<button>").addClass("btn").attr("id","random").text("Random Playlist"));
 randomDiv.append($("<hr>"));
 //make container for results
 searchDiv.append($("<div>").attr("id","resultsDiv"));

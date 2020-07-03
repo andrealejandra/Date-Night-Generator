@@ -1,10 +1,15 @@
 const numDrinkBtns = 3;
 isDrink = true;
-var queryURL, btnVal, userInput, drinkID, mealID;
+var queryURL, btnVal, userInput, drinkID, mealID, drinkObj, mealObj;
 var select = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 var notInitialized = true; 
 var haveDrink = false;
 var haveMeal = false;
+var isRestart = false;
+var linkURL;
+var storageDrink = [];
+var storageMeal = [];
+
 
 
 function pullAPI(queryURL){
@@ -21,10 +26,12 @@ $.ajax({
     }).then(function(response){
     //console.log(response);
     //console.log(select)
+    console.log(isRestart);
         var array, index;
         //By ingredient
         if (select[0] === true){
             array = response.drinks;
+            $("#dI-sel").append($("<option>").addClass("dI-op").text("DRINK UP!!").val("selected disabled"));
             for(var i = 0; i < array.length; i++) {
                 $("#dI-sel").append($("<option>").addClass("dI-op").text(array[i].strIngredient1)); 
             }
@@ -42,12 +49,13 @@ $.ajax({
             // APPEND DRINK NAME + IMAGES + RECIPE HERE
             
             select[1] = false;
-            $(".drink-col").empty();
+            $("#drink").empty();
             getDrink();
         }
         //By category
        else if (select[2] === true){
             array = response.drinks;
+            $("#dC-sel").append($("<option>").addClass("dC-op").text("DRINK UP!!").val("selected disabled"));
             for(var i = 0; i < array.length; i++) {
                 $("#dC-sel").append($("<option>").addClass("dC-op").text(array[i].strCategory)) 
                //console.log(array[i].strCategory);
@@ -65,12 +73,13 @@ $.ajax({
             //console.log(drinkID)
             // APPEND DRINK NAME + IMAGES + RECIPE HERE
             select[3] = false;
-            $(".drink-col").empty();
+            $("#drink").empty();
             getDrink(); 
         }
         //By Glass
         else if (select[4] === true){
             array = response.drinks;
+            $("#dG-sel").append($("<option>").addClass("dG-op").text("DRINK UP!!").val("selected disabled"));
             //Last index of API array is empty so subtract 1 from length
             for(var i = 0; i < (array.length - 1); i++) {
                 $("#dG-sel").append($("<option>").addClass("dG-op").text(array[i].strGlass)) 
@@ -83,19 +92,27 @@ $.ajax({
        else if (select[5] === true){
             
             array = response.drinks;
-            index = Math.floor(Math.random()*(array.length-1)) // 
+            index = Math.floor(Math.random()*(array.length-1)) 
             //console.log(index);
             drinkID = array[index].idDrink;
            // console.log(drinkID)
             // APPEND DRINK NAME + IMAGES + RECIPE HERE
             select[5] = false;
-            $(".drink-col").empty();
+            $("#drink").empty();
             getDrink(); 
         }
         else if (select[6] === true){
-            select[6] = false;
-            fillMI();
+                if(isRestart === false){
+                    
+                    fillMI();
+                }
+                else{
+                    isRestart = false; 
+                    console.log(isRestart);
+                }
+                select[6] = false;
         }
+
             
         else if (select[7] === true){
             
@@ -105,13 +122,14 @@ $.ajax({
             //console.log(drinkID)
             // APPEND DRINK NAME + IMAGES + RECIPE HERE
             select[7] = false;
-            $(".drink-col").empty();
+            $("#drink").empty();
             getDrink(); 
         }
 
         //MEALS BELOW
         else if (select[8] === true){
             array = response.meals;
+            $("#mI-sel").append($("<option>").addClass("mI-op").text("BON APPETIT!").val("selected disabled"));
             for(var i = 0; i < array.length; i++) {
                 $("#mI-sel").append($("<option>").addClass("mI-op").text(array[i].strIngredient)); 
             }
@@ -129,12 +147,13 @@ $.ajax({
             // APPEND DRINK NAME + IMAGES + RECIPE HERE
             
             select[9] = false;
-            $(".meal-col").empty();
+            $("#meal").empty();
             getMeal();
         }
         //By category
        else if (select[10] === true){
             array = response.meals;
+            $("#mC-sel").append($("<option>").addClass("mC-op").text("BON APPETIT!").val("selected disabled"));
             for(var i = 0; i < array.length; i++) {
                 $("#mC-sel").append($("<option>").addClass("mC-op").text(array[i].strCategory)) 
                //console.log(array[i].strCategory);
@@ -152,13 +171,14 @@ $.ajax({
             //console.log(mealID)
             // APPEND DRINK NAME + IMAGES + RECIPE HERE
             select[11] = false;
-            $(".meal-col").empty();
+            $("#meal").empty();
             getMeal(); 
         }
         //By Area
         else if (select[12] === true){
             array = response.meals;
             //Last index of API array is empty so subtract 1 from length
+            $("#mA-sel").append($("<option>").addClass("mA-op").text("BON APPETIT!").val("selected disabled"));
             for(var i = 0; i < (array.length - 1); i++) {
                 $("#mA-sel").append($("<option>").addClass("mA-op").text(array[i].strArea)) 
                //console.log(array[i].strArea);
@@ -170,13 +190,13 @@ $.ajax({
        else if (select[13] === true){
             
             array = response.meals;
-            index = Math.floor(Math.random()*(array.length-2)) // Last index is empty so subtract 2
+            index = Math.floor(Math.random()*(array.length-1))
             //console.log(index);
             mealID = array[index].idMeal;
             //console.log(mealID)
             // APPEND DRINK NAME + IMAGES + RECIPE HERE
             select[13] = false;
-            $(".meal-col").empty();
+            $("#meal").empty();
             getMeal(); 
         }
         else if (select[14] === true){
@@ -192,15 +212,23 @@ $.ajax({
             //console.log(meal)
             // APPEND DRINK NAME + IMAGES + RECIPE HERE
             select[15] = false;
-            $(".meal-col").empty();
+            $("#meal").empty();
             getMeal(); 
         }
         else if(haveDrink === true){
-            displayDrink(response.drinks[0]);
+            haveDrink = false;
+            drinkObj = response.drinks[0];
+            console.log("root" + drinkObj.strDrink)
+            displayDrink();
+            
         }
-        
-
-
+        else if(haveMeal === true){
+            haveMeal = false;
+            mealObj = response.meals[0];
+            displayMeal();
+            
+        }
+    
     })
 }
 
@@ -241,7 +269,7 @@ function fillDG(){
 function randDrink(){
     select[6] = true;
     $("#drink").append($("<div>").addClass("rand-div").attr("id", "dR-div"));
-    $("#dR-div").append($("<button>").attr("id", "dR-btn").addClass("rand-btn").text("Random Drink"));
+    $("#dR-div").append($("<button>").attr("id", "dR-btn").addClass("btn rand-btn").text("Random Drink"));
     queryURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
     pullAPI(queryURL);
     
@@ -283,7 +311,7 @@ function fillMA(){
 function randMeal(){
     select[14] = true;
     $("#meal").append($("<div>").addClass("rand-div").attr("id", "mR-div"));
-    $("#mR-div").append($("<button>").attr("id", "mR-btn").addClass("rand-btn").text("Random Meal"));
+    $("#mR-div").append($("<button>").attr("id", "mR-btn").addClass("rand-btn btn").text("Random Meal"));
     queryURL = "https://www.themealdb.com/api/json/v1/1/random.php";
     pullAPI(queryURL);   
 }
@@ -299,20 +327,47 @@ function getMeal(){
     pullAPI(queryURL);
 }
 
-function displayDrink(drinkObj){
+function displayDrink(){
     //console.log(drinkObj)
-    var dNameEl = $("<h2>").text(drinkObj.strDrink);
-    $("#drink").append(dNameEl);
-    var dImgEl = $("<img>").attr("src", drinkObj.strDrinkThumb);
+    var dImgEl = $("<img>").attr("src", drinkObj.strDrinkThumb).addClass("item-img");
     $("#drink").append(dImgEl);
-    var descEl = $("<p>").text(drinkObj.strSource);
+    var dNameEl = $("<h2>").text(drinkObj.strDrink).addClass("item-hdr");
+    $("#drink").append(dNameEl);
+    var x = 1;
+    var strIngredient = "strIngredient" + x;
+    var strMeasure = "strMeasure" + x;
+    //console.log(drinkObj[strIngredient])
+    //Add ingredients
+    while(drinkObj[strIngredient] !== null || drinkObj[strMeasure] !== null){ 
+        var ingEl = $("<p>").text(drinkObj[strMeasure] + " " + drinkObj[strIngredient]).addClass("ingredients p-info");
+        console.log(x)
+        $("#drink").append(ingEl);
+        x++;
+        strMeasure = "strMeasure" + x;
+        strIngredient = "strIngredient" + x;
+    
+    }
+    var descEl = $("<p>").text("Instructions: " + drinkObj.strInstructions).addClass("instructions p-info");
     $("#drink").append(descEl);
+    $("#drink").append($("<button>").attr("id", "drink-restart").addClass("btn restart-btn").text("Pick another"));
+    $("#drink").append($("<button>").attr("id", "drink-fav").addClass("btn fav-btn").text("Favorite"));
+    console.log(drinkObj);
 
 }
-function displayMeal(mealObj){
-    var name = $("<h2").text(mealObj.strMeal)
-
+function displayMeal(){
+    var mImgEl = $("<img>").attr("src", mealObj.strMealThumb).addClass("item-img");
+    $("#meal").append(mImgEl);
+    var mNameEl = $("<h2>").text(mealObj.strMeal).addClass("item-hdr");
+    $("#meal").append(mNameEl);
+    linkURL = mealObj.strSource;
+    var mdescEl = $("<a>").text("Click here for scrumptious recipe!").attr({id: "meal-link", href: linkURL, style: "display:block"});
+    //console.log(mealObj.strSource);
+    $("#meal").append(mdescEl);
+    $("#meal").append($("<button>").attr("id", "meal-restart").addClass("btn restart-btn").text("Pick another"));
+    $("#meal").append($("<button>").attr("id", "meal-fav").addClass("btn fav-btn").text("Favorite"));
 }
+
+
 
 
 fillDI();
@@ -322,7 +377,7 @@ fillDI();
 
 //Event listener for dropdown list selection
 
-$(".container-fluid").change((function(event){
+$(".container").change((function(event){
     event.preventDefault();
     var item;
     if(event.target.matches("#dI-sel"))
@@ -378,13 +433,13 @@ $(".container-fluid").change((function(event){
 }))
 
 // Drink random
-$(".container-fluid").on("click", (function(event){
+$(".container").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#dR-btn"))
     {
         select[7] = true; 
         queryURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
-        console.log(select);
+        //console.log(select);
         pullAPI(queryURL);
         
 
@@ -392,7 +447,7 @@ $(".container-fluid").on("click", (function(event){
 }))
 
 // Meal Random
-$(".container-fluid").on("click", (function(event){
+$(".container").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#mR-btn"))
     {
@@ -402,3 +457,65 @@ $(".container-fluid").on("click", (function(event){
 
     }
 }))
+
+$(".container").on("click", (function(event){
+    event.preventDefault();
+    if(event.target.matches("#meal-link"))
+    {
+        window.open(linkURL, '_blank');
+
+    }
+}))
+
+$(".container").on("click", (function(event){
+    event.preventDefault();
+    if(event.target.matches("#drink-restart"))
+    {
+        $("#drink").empty();
+        isRestart = true;
+        fillDI();
+        
+
+    }
+    //Adds drink to favorites
+    if(event.target.matches("#drink-fav"))
+    {
+        
+        
+        if(JSON.parse(localStorage.getItem("fav-drinks")) !== null){
+            storageDrink = JSON.parse(localStorage.getItem("fav-drinks"));
+        }
+        storageDrink.push(drinkObj);
+        localStorage.setItem("fav-drinks", JSON.stringify(storageDrink))
+        $(event.target).remove();
+        $("#drink").append($("<p>").text("Added to favorites!"));
+        
+        
+        
+    }
+    if(event.target.matches("#meal-fav"))
+    {
+        if(JSON.parse(localStorage.getItem("fav-meals")) !== null){
+            storageMeal = JSON.parse(localStorage.getItem("fav-meals"));
+        }
+        console.log(mealObj)
+        storageMeal.push(mealObj);
+        localStorage.setItem("fav-meals", JSON.stringify(storageMeal))
+        $(event.target).remove(); 
+        $("#meal").append($("<p>").text("Added to favorites!"));
+    }
+
+    
+}))
+$(".container").on("click", (function(event){
+    event.preventDefault();
+    if(event.target.matches("#meal-restart"))
+    {
+        $("#meal").empty();
+        fillMI();
+
+    }
+}))
+
+
+
