@@ -61,6 +61,7 @@ p{
     text-align: center;
     font-size: large;
     font-weight: bolder;
+    background-color: rgb(194, 190, 190) ;
 
 }
 .row::after{
@@ -77,4 +78,29 @@ p{
 .btn{
     background-color: rgb(9, 9, 95);
     color: whitesmoke;
+}
+
+#random{
+    background-color:  rgb(9, 9, 95);
+    color: whitesmoke;
+}
+
+#searchbtn{
+    background-color:  rgb(9, 9, 95);
+    color: whitesmoke;
+}
+
+#resultsDiv{
+    color: rgb(19, 18, 18);
+
+}
+
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: gray;
+    color: black;
+    text-align: center;
 }
