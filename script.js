@@ -516,6 +516,3 @@ $(".content-area").on("click", (function(event){
 
     }
 }))
-
-
-
