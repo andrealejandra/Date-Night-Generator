@@ -186,3 +186,38 @@ $(".container").on("click", (function(event){
 
     }
 }))
+
+// music
+
+
+
+
+    // $("#favTracks").append($("<div>").addClass("dropdown").attr("id", "favsongDiv"));
+    // $("#favsongDiv").append($("<label>").attr("id", "fav-music-list").addClass("dropdown-content").text("My favorite songs: "));
+    // $("#favsongDiv").append($("<select>").addClass("selection").attr("id", "favsong-sel"));
+    //$("#favsong-sel").append($("<option>").addClass("fD-op").text("Select favorite").val("selected disabled"));
+
+    //vvv enable when you have a var for stored music favorites
+    //for(var i = 0; i < storageMeal.length; i++) {
+    //     $("#fM-sel").append($("<option>").addClass("fM-op").text(storageMeal[i].strMeal));
+       
+    // }
+$("#fav-music").append($("<button>").attr("id","showfavs").addClass("btn").text("Show Favorites"));
+
+$("#showfavs").on("click",function(event) {
+
+parseFavoriteSongs();
+});
+
+
+function parseFavoriteSongs(){ 
+    if(JSON.parse(localStorage.getItem("favTrack")) !== null){
+        $("#fav-music").append($("<p>").text("songandartist"));
+
+    }
+    else{
+        $("#fav-music").empty();
+        $("#fav-music").append($("<p>").text("You do not have any favorite songs yet!"));
+        $("#fav-music").append($("<button>").attr("id","showfavs").addClass("btn").text("Show Favorites"));             
+    }
+}
