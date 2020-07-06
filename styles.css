@@ -15,6 +15,45 @@ p{
     font-size: large;
     font-weight: bold;
 }
+.ageHeader{
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.ageTitle{
+    text-align: center;
+    font-size: medium;
+    font-weight: normal;
+}
+
+.ageSub{
+    text-align: center;
+    font-size: smaller;
+    font-weight: lighter;
+}
+
+#dateInputFields{
+    display: none;
+    text-align: center;
+
+}
+.enterAge{
+    text-align: center;
+    font-size: smaller;
+    font-weight: normal;
+
+}
+
+#confirmationBtn{
+    color: rgb(16, 89, 224);
+    font-weight: bold;
+    background-color: cornsilk;
+    border: 1px solid black;
+    border-radius: 0px;
+    
+}
+
 
 .column{
     float: left;
@@ -22,10 +61,46 @@ p{
     text-align: center;
     font-size: large;
     font-weight: bolder;
+    background-color: rgb(194, 190, 190) ;
 
 }
 .row::after{
     content: "";
     display: flex;
     clear: both;
+}
+
+.item-img{
+    width: 80%;
+    height: auto;
+}
+/*Just added this so you can see the buttons, feel free to change*/ 
+.btn{
+    background-color: rgb(9, 9, 95);
+    color: whitesmoke;
+}
+
+#random{
+    background-color:  rgb(9, 9, 95);
+    color: whitesmoke;
+}
+
+#searchbtn{
+    background-color:  rgb(9, 9, 95);
+    color: whitesmoke;
+}
+
+#resultsDiv{
+    color: rgb(19, 18, 18);
+
+}
+
+.footer{
+    position: flex;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: gray;
+    color: black;
+    text-align: center;
 }
