@@ -1,8 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+html, body{
+    
+    width: 100%;
+    height: auto;
+}
+body{
+    background-image: url("./images/bg.jpg");
+    width: cover;
+    height: auto;
+}
+
+.jumbotron{
+    width: 100%;
+}
+
 .main-img{
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-};
+}
+
+.content-area{
+    background-color: white;
+}
 
 #nav-link{
 display: flex;
@@ -61,7 +83,7 @@ p{
     text-align: center;
     font-size: large;
     font-weight: bolder;
-    background-color: rgb(194, 190, 190) ;
+    
 
 }
 .row::after{
@@ -71,13 +93,17 @@ p{
 }
 
 .item-img{
-    width: 80%;
+    width: 50%;
     height: auto;
+    border: solid;
+    border-width: 3px;
+    border-radius: 10px;
 }
 /*Just added this so you can see the buttons, feel free to change*/ 
 .btn{
     background-color: rgb(9, 9, 95);
     color: whitesmoke;
+    
 }
 
 #random{
