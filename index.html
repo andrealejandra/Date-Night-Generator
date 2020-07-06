@@ -12,8 +12,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
 </head>
 <body>
-<header>
+<div class="container-fluid p-0 m-0">
+  <header>
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <a class="navbar-brand" href="index.html">Date Night Generator</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+          <!-- add link to pre-made cheesy spotify playlist-->
+            <a class="nav-link" href="#">Spotify</a>
+          </li>
+          <li class="nav-item">
+              <!-- add link to favorites page-->
+                <a class="nav-link" href = "favorites.html" id = "favorite-link">Favorites</a>
+          </li>
+            
+            </li>
+          </ul>
+        </div>
+      </nav>
+  </header>
+
+
+
+
+
         <a class="navbar-brand" href="#">Date Night Generator</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -37,6 +65,7 @@
 
 
 <body>
+
   <!-- Modal to confirm age -->
   <div class="ageBlockModal" style="overflow: auto;" id="overallModal" role="dialog" aria-labelledby="gridsystemModalLable" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog-centered" role="document">
@@ -60,7 +89,7 @@
                   </div>
 
                   <br>
-                  <div class="enterAge">
+                  <div class="enterAge mb-2">
                 Enter your birthdate: 
                   </div>
 
@@ -227,7 +256,7 @@
 
                  <!-- Enter button  -->
                   <div class="confirmBtn">
-                   <button id="confirmationBtn" class="langable" data-lang="enter">
+                   <button id="confirmationBtn" class="langable mt-2" data-lang="enter">
                      Submit
                    </button>
                  </div>
@@ -245,14 +274,14 @@
 
 
     <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <h1 class="display-4">Stressed about virtual date night?</h1>
-        </div>
-      </div>
+        
+          <h1 class="display-4 pl-4">Stressed about virtual date night?</h1>
+        
+    </div>
       <div id="nav-link">
-        <p>Start <a href ="results.html">here</a> to give life to that livestream.</p>
+        <p class = "intro-link">Start <a href ="results.html">here</a> to give life to that livestream.</p>
       </div>
-  <div class="container">
+
     <div class="row">
         <div class="col-sm-4 main-img">
             <img src ="images/laptop.jpeg" alt="First Impressions" width="450" height="300">
@@ -264,12 +293,13 @@
             <img src="images/couple.jpeg" alt="This could be you!" width="450" height="300">
         </div>
     </div>
-  </div>
-
   
+
+  <div class = "spacer"></div>
   <div class="footer">
     <p>Made by Team 9</p>
   </div>
+</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>

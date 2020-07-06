@@ -256,7 +256,7 @@ function  fillDC(){
 function fillDG(){
     select[4] = true; 
     $("#drink").append($("<div>").addClass("dropdown").attr("id", "dG-div"));
-    $("#dG-div").append($("<label>").attr("id", "drink-glass-list").addClass("dropdown-content").text("Drink by glass"));
+    $("#dG-div").append($("<label>").attr("id", "drink-glass-list").addClass("dropdown-content").text("Drink by glass: "));
     $("#dG-div").append($("<select>").addClass("selection").attr("id", "dG-sel"));
     queryURL = "https://www.thecocktaildb.com/api/json/v1/1/list.php?g=list";
     pullAPI(queryURL);
@@ -269,7 +269,7 @@ function fillDG(){
 function randDrink(){
     select[6] = true;
     $("#drink").append($("<div>").addClass("rand-div").attr("id", "dR-div"));
-    $("#dR-div").append($("<button>").attr("id", "dR-btn").addClass("btn rand-btn").text("Random Drink"));
+    $("#dR-div").append($("<button>").attr("id", "dR-btn").addClass("btn rand-btn m-2").text("Random Drink"));
     queryURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
     pullAPI(queryURL);
     
@@ -311,7 +311,7 @@ function fillMA(){
 function randMeal(){
     select[14] = true;
     $("#meal").append($("<div>").addClass("rand-div").attr("id", "mR-div"));
-    $("#mR-div").append($("<button>").attr("id", "mR-btn").addClass("rand-btn btn").text("Random Meal"));
+    $("#mR-div").append($("<button>").attr("id", "mR-btn").addClass("rand-btn btn m-2").text("Random Meal"));
     queryURL = "https://www.themealdb.com/api/json/v1/1/random.php";
     pullAPI(queryURL);   
 }
@@ -349,8 +349,8 @@ function displayDrink(){
     }
     var descEl = $("<p>").text("Instructions: " + drinkObj.strInstructions).addClass("instructions p-info");
     $("#drink").append(descEl);
-    $("#drink").append($("<button>").attr("id", "drink-restart").addClass("btn restart-btn").text("Pick another"));
-    $("#drink").append($("<button>").attr("id", "drink-fav").addClass("btn fav-btn").text("Favorite"));
+    $("#drink").append($("<button>").attr("id", "drink-restart").addClass("btn restart-btn m-2").text("Pick another"));
+    $("#drink").append($("<button>").attr("id", "drink-fav").addClass("btn fav-btn m-2").text("Favorite"));
     console.log(drinkObj);
 
 }
@@ -360,11 +360,11 @@ function displayMeal(){
     var mNameEl = $("<h2>").text(mealObj.strMeal).addClass("item-hdr");
     $("#meal").append(mNameEl);
     linkURL = mealObj.strSource;
-    var mdescEl = $("<a>").text("Click here for scrumptious recipe!").attr({id: "meal-link", href: linkURL, style: "display:block"});
+    var mdescEl = $("<a>").text("Click here for a scrumptious recipe!").attr({id: "meal-link", href: linkURL, style: "display:block"}).addClass("recipe my-2");
     //console.log(mealObj.strSource);
     $("#meal").append(mdescEl);
-    $("#meal").append($("<button>").attr("id", "meal-restart").addClass("btn restart-btn").text("Pick another"));
-    $("#meal").append($("<button>").attr("id", "meal-fav").addClass("btn fav-btn").text("Favorite"));
+    $("#meal").append($("<button>").attr("id", "meal-restart").addClass("btn restart-btn m-2").text("Pick another"));
+    $("#meal").append($("<button>").attr("id", "meal-fav").addClass("btn fav-btn m-2").text("Favorite"));
 }
 
 
@@ -377,7 +377,7 @@ fillDI();
 
 //Event listener for dropdown list selection
 
-$(".container").change((function(event){
+$(".content-area").change((function(event){
     event.preventDefault();
     var item;
     if(event.target.matches("#dI-sel"))
@@ -433,7 +433,7 @@ $(".container").change((function(event){
 }))
 
 // Drink random
-$(".container").on("click", (function(event){
+$(".content-area").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#dR-btn"))
     {
@@ -447,7 +447,7 @@ $(".container").on("click", (function(event){
 }))
 
 // Meal Random
-$(".container").on("click", (function(event){
+$(".content-area").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#mR-btn"))
     {
@@ -458,7 +458,7 @@ $(".container").on("click", (function(event){
     }
 }))
 
-$(".container").on("click", (function(event){
+$(".content-area").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#meal-link"))
     {
@@ -467,7 +467,7 @@ $(".container").on("click", (function(event){
     }
 }))
 
-$(".container").on("click", (function(event){
+$(".content-area").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#drink-restart"))
     {
@@ -507,7 +507,7 @@ $(".container").on("click", (function(event){
 
     
 }))
-$(".container").on("click", (function(event){
+$(".content-area").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#meal-restart"))
     {
