@@ -5,22 +5,13 @@ var musicResult = $("#music");
 musicResult.append("<div>").attr("id","searchDiv");
 var searchDiv =$("#searchDiv");
 searchDiv.text("Song Search: ");
-
-searchDiv.append($("<input>").attr("id","searchbox").addClass("selection"));
-$("#searchDiv").append($("<button>").attr("id","searchbtn").text("Search by Song Name ").addClass("m-2 btn"));
-
 searchDiv.append($("<input>").attr("id","searchbox"));
 $("#searchDiv").append($("<button>").addClass("btn").attr("id","searchbtn").text("Search by Song Name"));
-
 
 //div for random playlist search button
 searchDiv.append($("<div>").attr("id","randomDiv"));
 var randomDiv = $("#randomDiv");
-
-randomDiv.append($("<button>").attr("id","random").text("Random Playlist").addClass("m-2 btn"));
-
 randomDiv.append($("<button>").addClass("btn").attr("id","random").text("Random Playlist"));
-
 randomDiv.append($("<hr>"));
 //make container for results
 searchDiv.append($("<div>").attr("id","resultsDiv"));
@@ -58,11 +49,6 @@ $.ajax({
     success: function(data) {
         console.log(data);
         console.log(data.message.body.track_list[0].track.track_name);
-
-        // var song = `data.message.body.track_list[0].track.track_name`;
-        // var artist = `data.message.body.track_list[0].track.artist_name`;
-        $("#resultsDiv").html(`<h5>Search Result</h5><br> Song:${data.message.body.track_list[0].track.track_name} <br>Artist: ${data.message.body.track_list[0].track.artist_name}`);
-
         
         var song = data.message.body.track_list[0].track.track_name;
         var artist = data.message.body.track_list[0].track.artist_name;
@@ -73,7 +59,6 @@ $.ajax({
 
         //add favorites button
         resultsDiv.append($("<button>").addClass("btn").attr("id","favTrack").text("Favorite"));     
-
 
     },
     error: function(jqXHR, textStatus, errorThrown) {

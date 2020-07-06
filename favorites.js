@@ -67,8 +67,8 @@ function displayDrink(){
     }
     var descEl = $("<p>").text("Instructions: " + drinkObj.strInstructions).addClass("instructions p-info");
     $("#fav-drink").append(descEl);
-    $("#fav-drink").append($("<button>").attr("id", "fD-back").addClass("btn fav-btn m-2").text("Back"));
-    $("#fav-drink").append($("<button>").attr("id", "fD-remove").addClass("btn fav-btn m-2").text("Remove"));
+    $("#fav-drink").append($("<button>").attr("id", "fD-back").addClass("btn fav-btn").text("Back"));
+    $("#fav-drink").append($("<button>").attr("id", "fD-remove").addClass("btn fav-btn").text("Remove"));
     
 
 }
@@ -79,11 +79,11 @@ function displayMeal(){
     var mNameEl = $("<h2>").text(mealObj.strMeal).addClass("item-hdr");
     $("#fav-meal").append(mNameEl);
     linkURL = mealObj.strSource;
-    var mdescEl = $("<a>").text("Click here for a scrumptious recipe!").attr({id: "fav-meal-link", href: linkURL, style: "display:block"}).addClass("recipe my-2");
+    var mdescEl = $("<a>").text("Click here for scrumptious recipe!").attr({id: "fav-meal-link", href: linkURL, style: "display:block"});
     //console.log(mealObj.strSource);
     $("#fav-meal").append(mdescEl);
-    $("#fav-meal").append($("<button>").attr("id", "fM-back").addClass("btn fav-btn m-2").text("Back"));
-    $("#fav-meal").append($("<button>").attr("id", "fM-remove").addClass("btn fav-btn m-2").text("Remove"));
+    $("#fav-meal").append($("<button>").attr("id", "fM-back").addClass("btn fav-btn").text("Back"));
+    $("#fav-meal").append($("<button>").attr("id", "fM-remove").addClass("btn fav-btn").text("Remove"));
     
 }
 
@@ -92,7 +92,7 @@ function displayMeal(){
 loadFavoriteDrinks();
 loadFavoriteMeals();
 
-$(".content-area").change((function(event){
+$(".container").change((function(event){
     event.preventDefault();
     var obj;
     if(event.target.matches("#fD-sel"))
@@ -124,7 +124,7 @@ $(".content-area").change((function(event){
     }
 }))
 
-$(".content-area").on("click", (function(event){
+$(".container").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#fD-back"))
     {
@@ -132,7 +132,7 @@ $(".content-area").on("click", (function(event){
         loadFavoriteDrinks();
     }
 }))
-$(".content-area").on("click", (function(event){
+$(".container").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#fM-back"))
     {
@@ -141,7 +141,7 @@ $(".content-area").on("click", (function(event){
     }
 }))
 
-$(".content-area").on("click", (function(event){
+$(".container").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#fD-remove"))
     {
@@ -159,7 +159,7 @@ $(".content-area").on("click", (function(event){
         loadFavoriteDrinks();
     }
 }))
-$(".content-area").on("click", (function(event){
+$(".container").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#fM-remove"))
     {
@@ -178,7 +178,7 @@ $(".content-area").on("click", (function(event){
     }
 }))
 
-$(".content-area").on("click", (function(event){
+$(".container").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#fav-meal-link"))
     {
