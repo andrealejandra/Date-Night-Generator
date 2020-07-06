@@ -1,13 +1,63 @@
+*{
+    box-sizing: border-box;
+}
+html, body{
+    
+    width: 100%;
+    height: auto;
+}
+body{
+    background-image: url("./images/bg.jpg");
+    width: cover;
+    height: auto;
+}
+
+.jumbotron{
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+.display-4{
+    text-align: center;
+}
+
 .main-img{
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-};
+}
+.col-hdr{
+    text-decoration: underline;
+    font-style: italic;
+    margin-bottom: 14px;
+
+}
+.content-area{
+    background-color: white;
+}
+.selection{
+    display: block;
+    margin: 0 auto;
+}
 
 #nav-link{
-display: flex;
+
 justify-content:center;
 align-items:center;
+}
+.p-info{
+    font-weight: bold;
+    font-size: 16px;
+
+}
+.recipe{
+    font-style: italic;
+
+    
+}
+.intro-link{
+    font-size: 24px;
+    color: white;
 }
 
 p{
@@ -44,6 +94,11 @@ p{
     font-weight: normal;
 
 }
+.ageGroup{
+    
+    width: 50%;
+    margin: 0 auto;
+}
 
 #confirmationBtn{
     color: rgb(16, 89, 224);
@@ -51,6 +106,8 @@ p{
     background-color: cornsilk;
     border: 1px solid black;
     border-radius: 0px;
+    display: block;
+    margin: 0 auto;
     
 }
 
@@ -61,7 +118,7 @@ p{
     text-align: center;
     font-size: large;
     font-weight: bolder;
-    background-color: rgb(194, 190, 190) ;
+    
 
 }
 .row::after{
@@ -71,13 +128,17 @@ p{
 }
 
 .item-img{
-    width: 80%;
+    width: 50%;
     height: auto;
+    border: solid;
+    border-width: 3px;
+    border-radius: 10px;
 }
 /*Just added this so you can see the buttons, feel free to change*/ 
 .btn{
     background-color: rgb(9, 9, 95);
     color: whitesmoke;
+    
 }
 
 #random{
@@ -100,7 +161,23 @@ p{
     left: 0;
     bottom: 0;
     width: 100%;
+    height: auto;
     background-color: gray;
     color: black;
     text-align: center;
+    font-style: italic;
+}
+
+.spacer{
+    height: 25vh;
+}
+.btn:hover{
+    color: yellow;
+}
+#random:hover{
+    color: yellow;
+}
+
+#searchbtn:hover{
+color: yellow;
 }

@@ -8,55 +8,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-
-<header>
+<div class="container-fluid p-0 m-0">
+  <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">Date Night Generator</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-            <!-- add link to pre-made cheesy spotify playlist-->
-              <a class="nav-link" target="_blank" href="https://open.spotify.com/playlist/703NFL30mUxBTp3Ef3WgVH">Spotify</a>
-            </li>
-            <li class="nav-item">
+      <a class="navbar-brand" href="index.html">Date Night Generator</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+          <!-- add link to pre-made cheesy spotify playlist-->
+            <a class="nav-link" href="#">Spotify</a>
+          </li>
+          <li class="nav-item">
               <!-- add link to favorites page-->
                 <a class="nav-link" href = "favorites.html" id = "favorite-link">Favorites</a>
-              </li>
+          </li>
             
-</header>
-
-
-<body>
-   
-
-    <!-- container -->
-    <div class="container">
-        <div class="row row-cols-3">
-            <div class="column"><h1 class = "col-hdr">Drinks</h1>
-              <div id = "drink"></div>
-            </div>
-            <div class="column"><h1 class = "col-hdr">Meal</h1>
-              <div id = "meal"></div>
-            </div>
-            <div class="column"><h1 class = "col-hdr">Music</h1>
-            <div id="music"></div>
-          </div>
+            </li>
+          </ul>
         </div>
+      </nav>
+  </header>
 
+
+  <body>
     
-    </div>
 
+      <!-- container -->
+      
+          <div class="row row-cols-3 content-area m-4 pb-5">
+              <div class="column px-5"><h1 class = "col-hdr">Drinks</h1>
+                <div id = "drink"></div>
+              </div>
+              <div class="column px-5"><h1 class = "col-hdr">Meal</h1>
+                <div id = "meal"></div>
+              </div>
+              <div class="column px-5"><h1 class = "col-hdr">Music</h1>
+              <div id="music"></div>
+            </div>
+          </div>
 
-    <div class="footer">
-      <p>Made by Team 9</p>
-    </div>
+</div>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

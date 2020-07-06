@@ -67,8 +67,8 @@ function displayDrink(){
     }
     var descEl = $("<p>").text("Instructions: " + drinkObj.strInstructions).addClass("instructions p-info");
     $("#fav-drink").append(descEl);
-    $("#fav-drink").append($("<button>").attr("id", "fD-back").addClass("btn fav-btn").text("Back"));
-    $("#fav-drink").append($("<button>").attr("id", "fD-remove").addClass("btn fav-btn").text("Remove"));
+    $("#fav-drink").append($("<button>").attr("id", "fD-back").addClass("btn fav-btn m-2").text("Back"));
+    $("#fav-drink").append($("<button>").attr("id", "fD-remove").addClass("btn fav-btn m-2").text("Remove"));
     
 
 }
@@ -79,11 +79,11 @@ function displayMeal(){
     var mNameEl = $("<h2>").text(mealObj.strMeal).addClass("item-hdr");
     $("#fav-meal").append(mNameEl);
     linkURL = mealObj.strSource;
-    var mdescEl = $("<a>").text("Click here for scrumptious recipe!").attr({id: "fav-meal-link", href: linkURL, style: "display:block"});
+    var mdescEl = $("<a>").text("Click here for a scrumptious recipe!").attr({id: "fav-meal-link", href: linkURL, style: "display:block"}).addClass("recipe my-2");
     //console.log(mealObj.strSource);
     $("#fav-meal").append(mdescEl);
-    $("#fav-meal").append($("<button>").attr("id", "fM-back").addClass("btn fav-btn").text("Back"));
-    $("#fav-meal").append($("<button>").attr("id", "fM-remove").addClass("btn fav-btn").text("Remove"));
+    $("#fav-meal").append($("<button>").attr("id", "fM-back").addClass("btn fav-btn m-2").text("Back"));
+    $("#fav-meal").append($("<button>").attr("id", "fM-remove").addClass("btn fav-btn m-2").text("Remove"));
     
 }
 
@@ -92,7 +92,7 @@ function displayMeal(){
 loadFavoriteDrinks();
 loadFavoriteMeals();
 
-$(".container").change((function(event){
+$(".content-area").change((function(event){
     event.preventDefault();
     var obj;
     if(event.target.matches("#fD-sel"))
@@ -124,7 +124,7 @@ $(".container").change((function(event){
     }
 }))
 
-$(".container").on("click", (function(event){
+$(".content-area").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#fD-back"))
     {
@@ -132,7 +132,7 @@ $(".container").on("click", (function(event){
         loadFavoriteDrinks();
     }
 }))
-$(".container").on("click", (function(event){
+$(".content-area").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#fM-back"))
     {
@@ -141,7 +141,7 @@ $(".container").on("click", (function(event){
     }
 }))
 
-$(".container").on("click", (function(event){
+$(".content-area").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#fD-remove"))
     {
@@ -159,7 +159,7 @@ $(".container").on("click", (function(event){
         loadFavoriteDrinks();
     }
 }))
-$(".container").on("click", (function(event){
+$(".content-area").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#fM-remove"))
     {
@@ -178,46 +178,26 @@ $(".container").on("click", (function(event){
     }
 }))
 
-$(".container").on("click", (function(event){
+$(".content-area").on("click", (function(event){
     event.preventDefault();
     if(event.target.matches("#fav-meal-link"))
     {
         window.open(linkURL, '_blank');
 
     }
-}))
+}));
 
-// music
-
-
-
-
-    // $("#favTracks").append($("<div>").addClass("dropdown").attr("id", "favsongDiv"));
-    // $("#favsongDiv").append($("<label>").attr("id", "fav-music-list").addClass("dropdown-content").text("My favorite songs: "));
-    // $("#favsongDiv").append($("<select>").addClass("selection").attr("id", "favsong-sel"));
-    //$("#favsong-sel").append($("<option>").addClass("fD-op").text("Select favorite").val("selected disabled"));
-
-    //vvv enable when you have a var for stored music favorites
-    //for(var i = 0; i < storageMeal.length; i++) {
-    //     $("#fM-sel").append($("<option>").addClass("fM-op").text(storageMeal[i].strMeal));
-       
-    // }
-$("#fav-music").append($("<button>").attr("id","showfavs").addClass("btn").text("Show Favorites"));
-
+$("#fav-music").append($("<button>").attr("id", "showfavs").addClass("btn").text("Show Favorites"));
 $("#showfavs").on("click",function(event) {
-
 parseFavoriteSongs();
 });
-
-
-function parseFavoriteSongs(){ 
+function parseFavoriteSongs(){
     if(JSON.parse(localStorage.getItem("favTrack")) !== null){
         $("#fav-music").append($("<p>").text("songandartist"));
-
     }
     else{
         $("#fav-music").empty();
         $("#fav-music").append($("<p>").text("You do not have any favorite songs yet!"));
-        $("#fav-music").append($("<button>").attr("id","showfavs").addClass("btn").text("Show Favorites"));             
+        $("#fav-music").append($("<button>").attr("id","showfavs").addClass("btn").text("Show Favorites"));
     }
 }
