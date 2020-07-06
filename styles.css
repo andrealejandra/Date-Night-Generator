@@ -168,3 +168,6 @@ p{
 .spacer{
     height: 25vh;
 }
+.btn:hover{
+    color: yellow;
+}
