@@ -96,7 +96,7 @@ p{
 }
 
 .footer{
-    position: fixed;
+    position: flex;
     left: 0;
     bottom: 0;
     width: 100%;
