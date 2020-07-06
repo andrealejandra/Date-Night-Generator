@@ -14,6 +14,8 @@ body{
 
 .jumbotron{
     width: 100%;
+    background-color: black;
+    color: white;
 }
 
 .main-img{
@@ -21,15 +23,38 @@ body{
     justify-content: space-around;
     align-items: flex-end;
 }
+.col-hdr{
+    text-decoration: underline;
+    font-style: italic;
+    margin-bottom: 14px;
 
+}
 .content-area{
     background-color: white;
 }
+.selection{
+    display: block;
+    margin: 0 auto;
+}
 
 #nav-link{
-display: flex;
+
 justify-content:center;
 align-items:center;
+}
+.p-info{
+    font-weight: bold;
+    font-size: 16px;
+
+}
+.recipe{
+    font-style: italic;
+
+    
+}
+.intro-link{
+    font-size: 24px;
+    color: white;
 }
 
 p{
@@ -126,7 +151,13 @@ p{
     left: 0;
     bottom: 0;
     width: 100%;
+    height: auto;
     background-color: gray;
     color: black;
     text-align: center;
+    font-style: italic;
+}
+
+.spacer{
+    height: 25vh;
 }
