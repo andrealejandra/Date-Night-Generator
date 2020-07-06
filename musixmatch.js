@@ -42,7 +42,7 @@ $.ajax({
         format:"jsonp",
         callback:"jsonp_callback"
     },
-    url: "http://api.musixmatch.com/ws/1.1/track.search",
+    url: "https://api.musixmatch.com/ws/1.1/track.search",
     dataType: "jsonp",
     jsonpCallback: 'jsonp_callback',
     contentType: 'application/json',
@@ -113,7 +113,7 @@ var randomLyric = randomLyricArray[Math.floor(Math.random() * randomLyricArray.l
           format:"jsonp",
           callback:"jsonp_callback"
       },
-      url: "http://api.musixmatch.com/ws/1.1/track.search",
+      url: "https://api.musixmatch.com/ws/1.1/track.search",
       dataType: "jsonp",
       jsonpCallback: 'jsonp_callback',
       contentType: 'application/json',
